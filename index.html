@@ -935,83 +935,114 @@ body {
   0%, 100% { transform: scale(0.35) rotate(-45deg) rotateY(-120deg); }
   50% { transform: scale(0.35) rotate(-42deg) rotateY(-115deg); }
 }
-/* ==================== PARCHE RESPONSIVO ==================== */
+    
+/* --- ADICIONES: flores a los costados, detalles y responsividad --- */
 
-/* Tablets y móviles grandes */
-@media (max-width: 1024px) {
-  .flower__leaf {
-    width: 18vmin;
-    height: 5vmin;
-  }
+/* Nuevas flores laterales (6 y 7) - mantienen el mismo estilo que las originales */
+.flower--6 {
+  left: -55%;
+  z-index: -8;
+  transform: rotate(12deg);
+  animation: moving-flower-6 4s linear infinite;
+}
+.flower--6 .flower__line { height: 95vmin; animation-delay: 1.4s; }
+.flower--6 .flower__line__leaf--1 { animation: blooming-leaf-right var(--fl-speed) 3s backwards; }
+.flower--6 .flower__line__leaf--2 { animation: blooming-leaf-right var(--fl-speed) 2.8s backwards; }
+.flower--6 .flower__line__leaf--3 { animation: blooming-leaf-left var(--fl-speed) 2.6s backwards; }
+.flower--6 .flower__line__leaf--4 { animation: blooming-leaf-left var(--fl-speed) 2.4s backwards; }
+.flower__leafs--6 { animation-delay: 2.2s; }
 
-  .flower__white-circle {
-    width: 8vmin;
-    height: 8vmin;
-  }
+.flower--7 {
+  left: 105%;
+  z-index: -9;
+  transform: rotate(-30deg);
+  animation: moving-flower-7 4.8s linear infinite;
+}
+.flower--7 .flower__line { height: 88vmin; animation-delay: 2s; }
+.flower--7 .flower__line__leaf--1 { animation: blooming-leaf-right var(--fl-speed) 2.9s backwards; }
+.flower--7 .flower__line__leaf--2 { animation: blooming-leaf-right var(--fl-speed) 2.7s backwards; }
+.flower--7 .flower__line__leaf--3 { animation: blooming-leaf-left var(--fl-speed) 2.5s backwards; }
+.flower--7 .flower__line__leaf--4 { animation: blooming-leaf-left var(--fl-speed) 2.3s backwards; }
+.flower__leafs--7 { animation-delay: 2.6s; }
 
-  .flower__line {
-    width: 1.5vmin;
-  }
-
-  .flower__fall-down--yellow {
-    width: 2.2vmin;
-    height: 2.2vmin;
-  }
+@keyframes moving-flower-6 {
+  0%, 100% { transform: rotate(12deg); }
+  50% { transform: rotate(8deg); }
+}
+@keyframes moving-flower-7 {
+  0%, 100% { transform: rotate(-30deg); }
+  50% { transform: rotate(-26deg) rotateY(6deg); }
 }
 
-/* Celulares medianos */
-@media (max-width: 768px) {
-  .flower__leaf {
-    width: 14vmin;
-    height: 4vmin;
-  }
-
-  .flower__white-circle {
-    width: 6vmin;
-    height: 6vmin;
-  }
-
-  .flower__line {
-    width: 1.2vmin;
-  }
-
-  .flower__fall-down--yellow {
-    width: 1.8vmin;
-    height: 1.8vmin;
-  }
-
-  .flower__g-long {
-    height: 40vmin;
-  }
+/* Añadimos 2 hierbas más (para dar equilibrio visual con las flores laterales) */
+.flower__grass--11 {
+  left: -65vmin;
+  bottom: 20vmin;
+  transform: scale(0.28) rotate(10deg) rotateY(100deg);
+  opacity: 0.6;
+  z-index: 1;
+  animation: moving-grass--9 2s linear infinite;
+}
+.flower__grass--12 {
+  left: 95vmin;
+  bottom: 20vmin;
+  transform: scale(0.32) rotate(-40deg) rotateY(-100deg);
+  opacity: 0.65;
+  z-index: 2;
+  animation: moving-grass--10 2.3s linear infinite;
 }
 
-/* Celulares pequeños */
-@media (max-width: 480px) {
-  .flower__leaf {
-    width: 10vmin;
-    height: 3vmin;
-  }
+/* Detalles laterales sutiles (brillo/degradado) */
+.side-detail {
+  position: fixed;
+  top: 22%;
+  width: 14vmin;
+  height: 14vmin;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(107,240,255,0.12), transparent 55%);
+  filter: blur(1vmin);
+  pointer-events: none;
+  z-index: 1;
+}
+.side-detail--left { left: -4vmin; transform: translateX(-10%); }
+.side-detail--right { right: -4vmin; transform: translateX(10%); }
 
-  .flower__white-circle {
-    width: 5vmin;
-    height: 5vmin;
-  }
-
-  .flower__line {
-    width: 1vmin;
-  }
-
-  .flower__fall-down--yellow {
-    width: 1.5vmin;
-    height: 1.5vmin;
-  }
-
-  .flower__g-long {
-    height: 35vmin;
-  }
+/* RESPONSIVIDAD: ajustes para tablets y teléfonos */
+@media (max-width: 900px) {
+  .flowers { transform: scale(0.85); }
+  .flower__leaf { width: 18vmin; height: 5vmin; }
+  .flower__line { height: 48vmin; }
+  .flower__white-circle { width: 9vmin; height: 9vmin; left: -3.5vmin; top: -3.5vmin; }
+  .flower__grass--11 { left: -45vmin; }
+  .flower__grass--12 { left: 78vmin; }
 }
 
-    </style>
+@media (max-width: 600px) {
+  .flowers { transform: scale(0.75); }
+  .flower__leaf { width: 14vmin; height: 4vmin; }
+  .flower__line { height: 32vmin; }
+  .flower { bottom: 6vmin; }
+  .flower__light { width: 0.7vmin; height: 0.7vmin; }
+  .side-detail { width: 10vmin; height: 10vmin; top: 18%; }
+  .flower__grass--11 { left: -30vmin; bottom: 14vmin; }
+  .flower__grass--12 { left: 66vmin; bottom: 14vmin; }
+}
+
+@media (max-width: 420px) {
+  .flowers { transform: scale(0.65); }
+  .flower__leaf { width: 12vmin; height: 3.5vmin; box-shadow: none; }
+  .flower__line { height: 22vmin; }
+  .flower__white-circle { width: 7vmin; height: 7vmin; left: -3vmin; top: -3vmin; }
+  .side-detail { display: none; } /* ocultar para pantallas muy pequeñas */
+  /* Evitar que las flores queden demasiado separadas en móviles */
+  .flower--4, .flower--6 { left: -35%; }
+  .flower--5, .flower--7 { left: 75%; }
+}
+
+/* Fin de adiciones */
+
+
+</style>
 </head>
 <body class="not-loaded">
   <div class="night"></div>
@@ -1332,6 +1363,71 @@ body {
         <div class="flower__grass__overlay"></div>
       </div>
     </div>
+
+
+    <div class="flower flower--7">
+      <div class="flower__leafs flower__leafs--7">
+        <div class="flower__leaf" style="transform: translate(-50%, -10%) rotate(0deg);"></div>
+        <div class="flower__leaf" style="transform: translate(-50%, -10%) rotate(30deg);"></div>
+        <div class="flower__leaf" style="transform: translate(-50%, -10%) rotate(60deg);"></div>
+        <div class="flower__leaf" style="transform: translate(-50%, -10%) rotate(90deg);"></div>
+        <div class="flower__leaf" style="transform: translate(-50%, -10%) rotate(120deg);"></div>
+        <div class="flower__leaf" style="transform: translate(-50%, -10%) rotate(150deg);"></div>
+        <div class="flower__leaf" style="transform: translate(-50%, -10%) rotate(180deg);"></div>
+        <div class="flower__leaf" style="transform: translate(-50%, -10%) rotate(210deg);"></div>
+        <div class="flower__leaf" style="transform: translate(-50%, -10%) rotate(240deg);"></div>
+        <div class="flower__leaf" style="transform: translate(-50%, -10%) rotate(270deg);"></div>
+        <div class="flower__leaf" style="transform: translate(-50%, -10%) rotate(300deg);"></div>
+        <div class="flower__leaf" style="transform: translate(-50%, -10%) rotate(330deg);"></div>
+        <div class="flower__white-circle"></div>
+
+        <div class="flower__light flower__light--1"></div>
+        <div class="flower__light flower__light--2"></div>
+        <div class="flower__light flower__light--3"></div>
+        <div class="flower__light flower__light--4"></div>
+        <div class="flower__light flower__light--5"></div>
+        <div class="flower__light flower__light--6"></div>
+        <div class="flower__light flower__light--7"></div>
+        <div class="flower__light flower__light--8"></div>
+      </div>
+      <div class="flower__line">
+        <div class="flower__line__leaf flower__line__leaf--1"></div>
+        <div class="flower__line__leaf flower__line__leaf--2"></div>
+        <div class="flower__line__leaf flower__line__leaf--3"></div>
+        <div class="flower__line__leaf flower__line__leaf--4"></div>
+      </div>
+    </div>
+
+    <!-- Hierbas adicionales para equilibrar -->
+    <div class="growing-grass">
+      <div class="flower__grass flower__grass--11">
+        <div class="flower__grass--top"></div>
+        <div class="flower__grass--bottom"></div>
+        <div class="flower__grass__leaf flower__grass__leaf--1"></div>
+        <div class="flower__grass__leaf flower__grass__leaf--2"></div>
+        <div class="flower__grass__leaf flower__grass__leaf--3"></div>
+        <div class="flower__grass__leaf flower__grass__leaf--4"></div>
+        <div class="flower__grass__overlay"></div>
+      </div>
+    </div>
+
+    <div class="growing-grass">
+      <div class="flower__grass flower__grass--12">
+        <div class="flower__grass--top"></div>
+        <div class="flower__grass--bottom"></div>
+        <div class="flower__grass__leaf flower__grass__leaf--1"></div>
+        <div class="flower__grass__leaf flower__grass__leaf--2"></div>
+        <div class="flower__grass__leaf flower__grass__leaf--3"></div>
+        <div class="flower__grass__leaf flower__grass__leaf--4"></div>
+        <div class="flower__grass__overlay"></div>
+      </div>
+    </div>
+
+    <!-- Detalles laterales (brillos/gradientes) -->
+    <div class="side-detail side-detail--left" aria-hidden="true"></div>
+    <div class="side-detail side-detail--right" aria-hidden="true"></div>
+    <!-- --- FIN ADICIONES --- -->
+
   </div>
 
   <script>
